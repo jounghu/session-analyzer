@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a4084ff2-c02c-48e1-b7e4-5c91ccfc44ef" name="Default Changelist" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CodeStyleSettingsInfer">
+    <option name="done" value="true" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Scala Object" />
+        <option value="Package Object" />
+      </list>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="D:\apache-maven-3.6.2\repo" />
+        <option name="mavenHome" value="F:/DevTool/apache-maven-3.5.3" />
+        <option name="userSettingsFile" value="F:\DevTool\apache-maven-3.5.3\conf\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="skipTests" value="true" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="1" />
+  </component>
+  <component name="ProjectId" id="1UgNk9vvfPrrToCrjLA35yIhk1w" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="project.structure.last.edited" value="Modules" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+  </component>
+  <component name="RunManager" selected="Application.App">
+    <configuration name="App" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="App" />
+      <module name="session-app" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="AppConf" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="util.AppConf" />
+      <module name="session-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DataMock" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="mock.DataMock" />
+      <module name="session-app" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="mock.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.App" />
+        <item itemvalue="Application.AppConf" />
+        <item itemvalue="Application.DataMock" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a4084ff2-c02c-48e1-b7e4-5c91ccfc44ef" name="Default Changelist" comment="" />
+      <created>1575774418463</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575774418463</updated>
+      <workItem from="1575774421331" duration="4167000" />
+      <workItem from="1575779040097" duration="7246000" />
+      <workItem from="1575870794518" duration="344000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="452" y="101" key="#Notifications" timestamp="1575870799324">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="452" y="101" key="#Notifications/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575870799324" />
+    <state x="690" y="262" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1575808577938">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="262" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575808577938" />
+    <state x="414" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575774500237">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="414" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575774500237" />
+    <state x="489" y="131" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog" timestamp="1575774457937">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="489" y="131" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575774457937" />
+    <state x="898" y="134" key="FileChooserDialogImpl" timestamp="1575870850326">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="898" y="133" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1575778399559" />
+    <state x="898" y="134" key="FileChooserDialogImpl/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575870850326" />
+    <state width="1867" height="286" key="GridCell.Tab.0.bottom" timestamp="1575809541727">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1867" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1575809541727" />
+    <state width="1867" height="286" key="GridCell.Tab.0.center" timestamp="1575809541727">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1867" height="286" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1575809541727" />
+    <state width="1867" height="286" key="GridCell.Tab.0.left" timestamp="1575809541727">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1867" height="286" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1575809541727" />
+    <state width="1867" height="286" key="GridCell.Tab.0.right" timestamp="1575809541727">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1867" height="286" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1575809541727" />
+    <state x="312" y="0" key="SettingsEditor" timestamp="1575870855491">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="312" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1575815979415" />
+    <state x="312" y="0" key="SettingsEditor/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575870855491" />
+    <state x="554" y="23" width="811" height="993" key="find.popup" timestamp="1575775127338">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="554" y="23" width="811" height="993" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1575775127338" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/util/AppConf.scala</url>
+          <line>14</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
