@@ -1,4 +1,4 @@
-package util
+package com.skrein.util
 
 import java.util.Properties
 

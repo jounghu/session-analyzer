@@ -1,17 +1,15 @@
-package mock
+package com.skrein.mock
 
 import java.time.LocalDate
-import java.util
 import java.util.{Random, UUID}
 
-import org.apache.spark.{SparkConf, SparkContext}
+import com.skrein.util.StringUtils
 import org.apache.spark.sql.SQLContext
-import org.apache.spark.sql.types.DataTypes
 
 import scala.collection.mutable.ArrayBuffer
 
 /**
- * data mock app
+ * data com.skrein.mock app
  */
 case class Session(
                     date: String, userId: Long, sessionId: String, pageId: Long,
@@ -28,10 +26,10 @@ case class User(
 
 object DataMock {
 
-  def mockUser(sqlContext: SQLContext): Unit = {
+  def mockUser(sqlContext: SQLContext) = {
     val sexes = Array("male", "female")
     val random = new Random
-    val userList: ArrayBuffer[User] = ArrayBuffer()
+    val userList = ArrayBuffer[User]()
     for (i <- 1 to 100) {
       val userId = i
       val userName = s"user${i}"
@@ -46,9 +44,9 @@ object DataMock {
     import sqlContext.implicits._
     val userDF = rdd.toDF()
     userDF.registerTempTable("user_info")
-
     val user1 = sqlContext.sql("select * from user_info limit 1")
     user1.show()
+    userDF
   }
 
   def mockSession(sqlContext: SQLContext) = {
@@ -66,11 +64,11 @@ object DataMock {
       for (j <- 1 to 10) {
         // session
         val sessionId = UUID.randomUUID().toString.replace("-", "")
-        val baseTime = today + " " + random.nextInt(24)
+        val baseTime = today + " " + StringUtils.append0(random.nextInt(24).toString)
 
         for (k <- 1 to 100) {
           val pageId = random.nextInt(10)
-          val actionTime = baseTime + ":" + random.nextInt(60) + ":" + random.nextInt(60)
+          val actionTime = baseTime + ":" + StringUtils.append0(random.nextInt(60).toString) + ":" + StringUtils.append0(random.nextInt(60).toString)
           var searchKeyword: String = null
           var clickCategoryId: Long = 0L
           var clickProductId: Long = 0L
@@ -120,5 +118,6 @@ object DataMock {
 
     val result = sqlContext.sql("select * from user_action limit 1")
     result.show()
+    df
   }
 }
