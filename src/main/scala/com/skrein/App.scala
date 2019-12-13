@@ -1,12 +1,13 @@
 package com.skrein
 
+import com.skrein.core.{CostAccumulator, StepAccumulator}
 import com.skrein.dao.TaskDao
 import com.skrein.mock.DataMock
-import com.skrein.model.PartAggInfo
+import com.skrein.model.{CostInterval, PartAggInfo, StepInterval}
 import com.skrein.util.{AppConstants, DateUtil, JsonParse, StringUtils}
 import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.sql.{DataFrame, SQLContext}
-import org.apache.spark.{SparkConf, SparkContext}
+import org.apache.spark.{Accumulator, SparkConf, SparkContext}
 
 import scala.collection.mutable.ArrayBuffer
 
@@ -31,7 +32,54 @@ object App {
   }
 
 
-  def combineSession(sessionDF: DataFrame, userDF: DataFrame) = {
+  def aggCostTime(visitCostTime: Long, costAgg: Accumulator[CostInterval]) = {
+    val costInterval: CostInterval =
+      if (visitCostTime >= 1 && visitCostTime <= 3) {
+        new CostInterval(cost_1_3 = 1)
+      } else if (visitCostTime >= 4 && visitCostTime <= 6) {
+        new CostInterval(cost_4_6 = 1)
+      }
+      else if (visitCostTime >= 7 && visitCostTime <= 9) {
+        new CostInterval(cost_7_9 = 1)
+      }
+      else if (visitCostTime >= 10 && visitCostTime <= 30) {
+        new CostInterval(cost_10_30 = 1)
+      }
+      else if (visitCostTime >= 31 && visitCostTime <= 60) {
+        new CostInterval(cost_30_60 = 1)
+      }
+      else if (visitCostTime >= 61 && visitCostTime <= 60 * 3) {
+        new CostInterval(cost_1m_3m = 1)
+      }
+      else if (visitCostTime >= 181 && visitCostTime <= 600) {
+        new CostInterval(cost_3m_10m = 1)
+      } else if (visitCostTime >= 601 && visitCostTime <= 30 * 60) {
+        new CostInterval(cost_10m_30m = 1)
+      } else {
+        new CostInterval(cost_4_6 = 1)
+      }
+    costAgg.add(costInterval)
+  }
+
+  def aggStepLength(stepLength: Long, stepAgg: Accumulator[StepInterval]) = {
+    val stepInterval: StepInterval =
+      if (stepLength >= 1 && stepLength <= 3) {
+        new StepInterval(step_1_3 = 1)
+      } else if (stepLength >= 4 && stepLength <= 6) {
+        new StepInterval(step_4_6 = 1)
+      } else if (stepLength >= 7 && stepLength <= 9) {
+        new StepInterval(step_7_9 = 1)
+      } else if (stepLength >= 10 && stepLength <= 30) {
+        new StepInterval(step_10_30 = 1)
+      } else if (stepLength >= 31 && stepLength <= 60) {
+        new StepInterval(step_30_60 = 1)
+      } else {
+        new StepInterval(step_60 = 1)
+      }
+    stepAgg.add(stepInterval)
+  }
+
+  def combineSession(sessionDF: DataFrame, userDF: DataFrame, costAgg: Accumulator[CostInterval], stepAgg: Accumulator[StepInterval]) = {
     val userRdd = userDF.rdd.map(user => {
       val userId = user.getAs("userId").asInstanceOf[Int].toLong
       (userId, user)
@@ -89,6 +137,11 @@ object App {
         // 计算session访问时长
         val visitCostTime = DateUtil.cost(startTime, endTime)
 
+        // TASK: 计算访问步长放入累加器中
+        aggCostTime(visitCostTime, costAgg)
+
+        aggStepLength(stepLength, stepAgg)
+
         // 课中老师采用字符串，拼接，我感觉实在是太不符合企业要求了
         // 我这里的实现采用，case class
         val partAgg = PartAggInfo(sessionId, searchKeywordString, clickCategoryIdString, visitCostTime, stepLength)
@@ -105,9 +158,10 @@ object App {
           (pageAggInfo.sessionId, pageAggInfo)
       }
 
-    aggRdd.foreachPartition(p => {
-      p.foreach(println)
-    })
+    aggRdd.take(10).foreach(println)
+
+    println( stepAgg.value.toString)
+    println(costAgg.value.toString)
   }
 
   def filter(taskParam: String, sessionDF: DataFrame): DataFrame = {
@@ -128,6 +182,8 @@ object App {
 
     val sessionDF = DataMock.mockSession(sqlContext)
     val userDF = DataMock.mockUser(sqlContext)
+    val costAgg = sparkContext.accumulator(new CostInterval())(new CostAccumulator)
+    val stepAgg = sparkContext.accumulator(new StepInterval())(new StepAccumulator)
 
 
     val taskId = args(0).toInt
@@ -136,9 +192,9 @@ object App {
     }
 
     val task = TaskDao.findTaskById(taskId)
-
     val filterSession = filter(task.taskParam, sessionDF)
-    combineSession(filterSession, userDF)
+    combineSession(filterSession, userDF, costAgg, stepAgg)
+
 
   }
 }

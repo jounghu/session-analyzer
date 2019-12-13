@@ -23,7 +23,7 @@ object StringUtils {
     if (array == null || array.size == 0) {
       return null
     }
-    Joiner.on(",").join(array.asJava)
+    Joiner.on("|").join(array.asJava)
   }
 
   /**

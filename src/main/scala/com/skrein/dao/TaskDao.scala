@@ -37,7 +37,9 @@ object TaskDao {
       }
     }
     finally {
-      resultSet.close()
+      if (resultSet!=null){
+        resultSet.close()
+      }
     }
     null
   }
