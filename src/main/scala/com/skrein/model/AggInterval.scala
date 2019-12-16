@@ -26,7 +26,7 @@ class StepInterval(
                     var step_10_30: Long = 0,
                     var step_30_60: Long = 0,
                     var step_60: Long = 0
-                  )extends Serializable {
+                  ) extends Serializable {
 
 
   def +(stepInterval: StepInterval) = {
@@ -39,16 +39,26 @@ class StepInterval(
 
   }
 
+  def count(): Long = {
+    step_1_3 + step_4_6 + step_7_9 + step_10_30 + step_30_60 + step_60
+  }
+
   override def toString: String =
     "step_1_3=" + this.step_1_3 + "\n" +
       "step_4_6=" + this.step_4_6 + "\n" +
       "step_7_9=" + this.step_7_9 + "\n" +
       "step_10_30=" + this.step_10_30 + "\n" +
       "step_30_60=" + this.step_30_60 + "\n" +
-      "step_30_60=" + this.step_30_60 + "\n" +
       "step_60=" + this.step_60 + "\n"
 
 }
+
+
+case class StepIntervalPercent(taskId: Int,
+                               step_1_3_per: Double, step_4_6_per: Double,
+                               step_7_9_per: Double, step_10_30_per: Double,
+                               step_30_60_per: Double, step_60_per: Double
+                              )
 
 
 /**
@@ -74,8 +84,7 @@ class CostInterval(var cost_1_3: Long = 0,
                   ) extends Serializable {
 
 
-
-  def +(costInterval: CostInterval):Unit = {
+  def +(costInterval: CostInterval): Unit = {
     this.cost_10m_30m += costInterval.cost_10m_30m
     this.cost_3m_10m += costInterval.cost_3m_10m
     this.cost_1m_3m += costInterval.cost_1m_3m
@@ -84,6 +93,10 @@ class CostInterval(var cost_1_3: Long = 0,
     this.cost_7_9 += costInterval.cost_7_9
     this.cost_4_6 += costInterval.cost_4_6
     this.cost_1_3 += costInterval.cost_1_3
+  }
+
+  def count(): Long = {
+    cost_1_3 + cost_4_6 + cost_7_9 + cost_10_30 + cost_30_60 + cost_30_60 + cost_1m_3m + cost_3m_10m + cost_10m_30m
   }
 
   override def toString: String =
@@ -97,6 +110,17 @@ class CostInterval(var cost_1_3: Long = 0,
       "cost_1_3=" + this.cost_1_3 + "\n"
 }
 
+
+case class CostIntervalPercent(taskId: Int,
+                               cost_1_3_per: Double,
+                               cost_4_6_per: Double,
+                               cost_7_9_per: Double,
+                               cost_10_30_per: Double,
+                               cost_30_60_per: Double,
+                               cost_1m_3m_per: Double,
+                               cost_3m_10m_per: Double,
+                               cost_10m_30m_per: Double
+                              )
 
 
 

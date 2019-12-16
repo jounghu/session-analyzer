@@ -2,14 +2,17 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4084ff2-c02c-48e1-b7e4-5c91ccfc44ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/core/StepAccumulator.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/AggInterval.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/smartfox_info.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/dao/SessionIntervalDao.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/util/NumberUtil.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sql/Session.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/Session.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/App.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/core/SessionAccumulator.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/core/CostAccumulator.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/dao/TaskDao.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/dao/TaskDao.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/util/StringUtils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/util/StringUtils.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/model/AggInterval.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/AggInterval.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/model/PartAggInfo.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/PartAggInfo.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/util/DateUtil.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/util/DateUtil.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -24,6 +27,7 @@
       <list>
         <option value="Package Object" />
         <option value="Scala Object" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -34,8 +38,8 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="D:\apache-maven-3.6.2\repo" />
-        <option name="mavenHome" value="F:/DevTool/apache-maven-3.5.3" />
-        <option name="userSettingsFile" value="F:\DevTool\apache-maven-3.5.3\conf\settings.xml" />
+        <option name="mavenHome" value="D:/apache-maven-3.6.2" />
+        <option name="userSettingsFile" value="D:\apache-maven-3.6.2\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -57,11 +61,11 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../advertising/ad-spider" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="MavenSettings" />
+    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -90,25 +94,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DateUtil" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.skrein.util.DateUtil" />
+    <configuration name="MapTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MapTest" />
       <module name="session-analyzer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.skrein.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="JsonUtils" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.skrein.util.JsonUtils" />
+    <configuration name="StepIntervalDao" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.skrein.dao.SessionIntervalDao" />
       <module name="session-analyzer" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.skrein.util.*" />
+          <option name="PATTERN" value="com.skrein.dao.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -131,18 +129,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.App" />
-      <item itemvalue="Application.DateUtil" />
       <item itemvalue="Application.DBUtils" />
-      <item itemvalue="Application.JsonUtils" />
       <item itemvalue="Application.Test" />
+      <item itemvalue="Application.StepIntervalDao" />
+      <item itemvalue="Application.MapTest" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.MapTest" />
+        <item itemvalue="Application.StepIntervalDao" />
         <item itemvalue="Application.Test" />
         <item itemvalue="Application.DBUtils" />
-        <item itemvalue="Application.JsonUtils" />
-        <item itemvalue="Application.DateUtil" />
       </list>
     </recent_temporary>
   </component>
@@ -172,6 +170,8 @@
       <workItem from="1575779040097" duration="7246000" />
       <workItem from="1575870794518" duration="16251000" />
       <workItem from="1575944743767" duration="15856000" />
+      <workItem from="1576286376163" duration="6211000" />
+      <workItem from="1576498861421" duration="7896000" />
     </task>
     <task id="LOCAL-00001" summary="[Add] session agg, task数据库读取过滤">
       <created>1575885951403</created>
@@ -208,14 +208,15 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="593" y="106" key="#App/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575876546007" />
-    <state x="452" y="101" key="#Notifications" timestamp="1575870799324">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="452" y="100" key="#Notifications" timestamp="1576286379443">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="452" y="100" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1576286379443" />
     <state x="452" y="101" key="#Notifications/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575870799324" />
-    <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1576227653221">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="690" y="262" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1576287812501">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="690" y="262" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575808577938" />
+    <state x="690" y="262" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576287812501" />
     <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576227653221" />
     <state x="414" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576228143478">
       <screen x="0" y="0" width="1920" height="1050" />
@@ -234,13 +235,15 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="489" y="131" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575774457937" />
-    <state x="771" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1575871394066">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="771" y="404" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1576286436724">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="771" y="404" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576286436724" />
     <state x="771" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575871394066" />
-    <state x="1056" y="319" key="#xdebugger.evaluate" timestamp="1576229057625">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="1033" y="364" width="721" height="676" key="#xdebugger.evaluate" timestamp="1576505819952">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state x="1033" y="364" width="721" height="676" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1576505819952" />
     <state x="1056" y="319" key="#xdebugger.evaluate/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229057625" />
     <state x="236" y="52" key="CommitChangelistDialog2" timestamp="1575885950241">
       <screen x="0" y="0" width="1920" height="1050" />
@@ -250,56 +253,64 @@
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="92" y="92" width="1736" height="866" key="DiffContextDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575877639378" />
-    <state x="898" y="134" key="FileChooserDialogImpl" timestamp="1576043085600">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="898" y="133" key="FileChooserDialogImpl" timestamp="1576286408168">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="898" y="133" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1575778399559" />
+    <state x="898" y="133" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1576286408168" />
     <state x="898" y="134" key="FileChooserDialogImpl/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576043085600" />
-    <state width="1864" height="313" key="GridCell.Tab.0.bottom" timestamp="1576229405014">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1867" height="282" key="GridCell.Tab.0.bottom" timestamp="1576506436356">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="286" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1575809541727" />
+    <state width="1867" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
     <state width="1864" height="313" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229405014" />
-    <state width="1864" height="313" key="GridCell.Tab.0.center" timestamp="1576229405014">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1867" height="282" key="GridCell.Tab.0.center" timestamp="1576506436356">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="286" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1575809541727" />
+    <state width="1867" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
     <state width="1864" height="313" key="GridCell.Tab.0.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229405014" />
-    <state width="1864" height="313" key="GridCell.Tab.0.left" timestamp="1576229405014">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1867" height="282" key="GridCell.Tab.0.left" timestamp="1576506436356">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="286" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1575809541727" />
+    <state width="1867" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
     <state width="1864" height="313" key="GridCell.Tab.0.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229405014" />
-    <state width="1864" height="313" key="GridCell.Tab.0.right" timestamp="1576229405014">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1867" height="282" key="GridCell.Tab.0.right" timestamp="1576506436356">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1867" height="286" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1575809541727" />
+    <state width="1867" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
     <state width="1864" height="313" key="GridCell.Tab.0.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229405014" />
-    <state width="1864" height="186" key="GridCell.Tab.1.bottom" timestamp="1576229149364">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1867" height="282" key="GridCell.Tab.1.bottom" timestamp="1576506436356">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1867" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
     <state width="1864" height="186" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229149364" />
-    <state width="1864" height="186" key="GridCell.Tab.1.center" timestamp="1576229149364">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1867" height="282" key="GridCell.Tab.1.center" timestamp="1576506436356">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1867" height="282" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
     <state width="1864" height="186" key="GridCell.Tab.1.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229149364" />
-    <state width="1864" height="186" key="GridCell.Tab.1.left" timestamp="1576229149364">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1867" height="282" key="GridCell.Tab.1.left" timestamp="1576506436356">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1867" height="282" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
     <state width="1864" height="186" key="GridCell.Tab.1.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229149364" />
-    <state width="1864" height="186" key="GridCell.Tab.1.right" timestamp="1576229149364">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state width="1867" height="282" key="GridCell.Tab.1.right" timestamp="1576506436356">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
+    <state width="1867" height="282" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
     <state width="1864" height="186" key="GridCell.Tab.1.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229149364" />
-    <state x="312" y="0" key="SettingsEditor" timestamp="1575870855491">
-      <screen x="0" y="0" width="1920" height="1050" />
+    <state x="312" y="0" key="SettingsEditor" timestamp="1576286480807">
+      <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="312" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1575815979415" />
+    <state x="312" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576286480807" />
     <state x="312" y="0" key="SettingsEditor/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575870855491" />
     <state x="452" y="194" key="Vcs.Push.Dialog.v2" timestamp="1575885952767">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="452" y="194" key="Vcs.Push.Dialog.v2/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575885952766" />
+    <state x="560" y="301" key="com.intellij.ide.util.TipDialog" timestamp="1576499264210">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="560" y="301" key="com.intellij.ide.util.TipDialog/0.0.1920.1050@0.0.1920.1050" timestamp="1576499264210" />
     <state x="554" y="23" width="811" height="993" key="find.popup" timestamp="1575775127338">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -314,23 +325,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/skrein/App.scala</url>
-          <line>146</line>
-          <option name="timeStamp" value="5" />
+          <line>209</line>
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/skrein/App.scala</url>
-          <line>140</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/skrein/App.scala</url>
-          <line>142</line>
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="scala-line">
-          <url>file://$PROJECT_DIR$/src/main/scala/com/skrein/core/CostAccumulator.scala</url>
-          <line>16</line>
-          <option name="timeStamp" value="8" />
+          <line>216</line>
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

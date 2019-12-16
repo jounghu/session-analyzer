@@ -18,6 +18,8 @@ object DateUtil {
 
   val datetimeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")
 
+  val datetimeHourFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd_HH")
+
   /**
    * 比较date是否在start和end中间
    * pattern yyyy-MM-dd
@@ -46,6 +48,16 @@ object DateUtil {
     val end = LocalDateTime.parse(endTime, datetimeFormat)
     val action = LocalDateTime.parse(actionTime, datetimeFormat)
     action.isAfter(end)
+  }
+
+  /**
+   * format startTime
+   * yyyy-MM-dd HH:mm:ss -> yyyy-MM-dd_HH
+   * @param startTime
+   * @return
+   */
+  def format(startTime: String): String = {
+    LocalDateTime.parse(startTime,datetimeFormat).format(datetimeHourFormat)
   }
 
   /**

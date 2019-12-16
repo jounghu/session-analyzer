@@ -1,14 +1,19 @@
 package com.skrein
 
+import java.util.HashMap
+import java.util.Random
+
 import com.skrein.core.{CostAccumulator, StepAccumulator}
-import com.skrein.dao.TaskDao
+import com.skrein.dao.{SessionIntervalDao, TaskDao}
 import com.skrein.mock.DataMock
-import com.skrein.model.{CostInterval, PartAggInfo, StepInterval}
-import com.skrein.util.{AppConstants, DateUtil, JsonParse, StringUtils}
+import com.skrein.model.{CostInterval, CostIntervalPercent, PartAggInfo, StepInterval, StepIntervalPercent}
+import com.skrein.util.{AppConstants, DateUtil, JsonParse, NumberUtil, StringUtils}
+import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.sql.{DataFrame, SQLContext}
 import org.apache.spark.{Accumulator, SparkConf, SparkContext}
 
+import scala.collection.mutable
 import scala.collection.mutable.ArrayBuffer
 
 /**
@@ -107,7 +112,7 @@ object App {
           }
 
           if (!StringUtils.isEmpty(clickCategoryId) && !clickCategoryIdList.contains(clickCategoryId)) {
-            clickCategoryIdList += clickCategoryId
+            clickCategoryIdList + clickCategoryId
           }
 
           // 计算开始时间和结束时间
@@ -144,7 +149,7 @@ object App {
 
         // 课中老师采用字符串，拼接，我感觉实在是太不符合企业要求了
         // 我这里的实现采用，case class
-        val partAgg = PartAggInfo(sessionId, searchKeywordString, clickCategoryIdString, visitCostTime, stepLength)
+        val partAgg = PartAggInfo(sessionId, searchKeywordString, clickCategoryIdString, visitCostTime, stepLength, startTime = startTime)
         (userId, partAgg)
       }
       }
@@ -157,11 +162,7 @@ object App {
           pageAggInfo.sex = userRow.getAs("sex").asInstanceOf[String]
           (pageAggInfo.sessionId, pageAggInfo)
       }
-
-    aggRdd.take(10).foreach(println)
-
-    println( stepAgg.value.toString)
-    println(costAgg.value.toString)
+    aggRdd
   }
 
   def filter(taskParam: String, sessionDF: DataFrame): DataFrame = {
@@ -169,6 +170,99 @@ object App {
     val startDate = json.getField(AppConstants.SESSION_FILTER_START_DATE)
     val endDate = json.getField(AppConstants.SESSION_FILTER_END_DATE)
     sessionDF.filter(sessionDF("date").between(startDate, endDate))
+  }
+
+  /**
+   * 随机抽取Session算法
+   *
+   * @param aggRdd
+   */
+  def randomExtractSession(aggRdd: RDD[(String, PartAggInfo)], sessionNum: Long) = {
+
+    val dayHourSession = aggRdd.map {
+      case (sessionId, pageAggInfo) => {
+        val startTime = pageAggInfo.startTime
+        val dateTimeHour = DateUtil.format(startTime)
+        (dateTimeHour, pageAggInfo.sessionId)
+      }
+    }.cache()
+
+    // 随机抽取session算法
+    val dateHourSessionCount: scala.collection.Map[String, Long] = dayHourSession.countByKey()
+
+
+    val dayHourMap = mutable.Map[String, mutable.Map[String, Int]]()
+    dateHourSessionCount.foreach(t => {
+      val dayHour = t._1.split("_")
+      val day = dayHour(0)
+      val hour = dayHour(1)
+      val hourMap = dayHourMap.getOrElse(day, mutable.Map[String, Int]())
+      hourMap.put(hour, t._2.toInt)
+      dayHourMap.put(day, hourMap)
+    })
+
+
+    val allDaySize = dayHourMap.size
+    val perDaySize = sessionNum / allDaySize
+
+
+    val random = new Random()
+    val dayHourMapIndex: mutable.Map[String, ArrayBuffer[Int]] = mutable.Map()
+    for ((k, v: mutable.Map[String, Int]) <- dayHourMap) {
+      val perHourSize = if (perDaySize / v.size == 0) 1 else perDaySize / v.size
+      // 遍历
+      for ((hour, count: Int) <- v) {
+        val randomSessionIndex = ArrayBuffer[Int]()
+        for (i <- 0 until perHourSize.toInt) {
+          var item = random.nextInt(count)
+          while (randomSessionIndex.contains(item)) {
+            item = random.nextInt(count)
+          }
+          randomSessionIndex.append(item)
+        }
+        dayHourMapIndex.put(k + "_" + hour, randomSessionIndex)
+      }
+    }
+
+
+  }
+
+  /**
+   * 将累加器包含的值存入MySQL -> `t_step_interval`
+   *
+   * @param stepAgg
+   */
+  def saveStepInterval(stepAgg: Accumulator[StepInterval], taskId: Int): Unit = {
+    val stepInterval: StepInterval = stepAgg.value
+    val count = stepInterval.count()
+    val stePercent = StepIntervalPercent(taskId,
+      NumberUtil.twoPrecision(stepInterval.step_1_3, count),
+      NumberUtil.twoPrecision(stepInterval.step_4_6, count),
+      NumberUtil.twoPrecision(stepInterval.step_7_9, count),
+      NumberUtil.twoPrecision(stepInterval.step_10_30, count),
+      NumberUtil.twoPrecision(stepInterval.step_30_60, count),
+      NumberUtil.twoPrecision(stepInterval.step_60, count)
+    )
+    SessionIntervalDao.insertStepInterval(stePercent)
+  }
+
+  def saveCostInterval(costAgg: Accumulator[CostInterval], taskId: Int): Unit = {
+    val costInterval = costAgg.value
+    val count = costInterval.count()
+    val costIntervalPercent = CostIntervalPercent(taskId,
+      NumberUtil.twoPrecision(costInterval.cost_1_3, count),
+      NumberUtil.twoPrecision(costInterval.cost_4_6, count),
+      NumberUtil.twoPrecision(costInterval.cost_7_9, count),
+      NumberUtil.twoPrecision(costInterval.cost_10_30, count),
+      NumberUtil.twoPrecision(costInterval.cost_30_60, count),
+      NumberUtil.twoPrecision(costInterval.cost_1m_3m, count),
+      NumberUtil.twoPrecision(costInterval.cost_3m_10m, count),
+      NumberUtil.twoPrecision(costInterval.cost_10m_30m, count)
+    )
+
+    SessionIntervalDao.insertCostInterval(costIntervalPercent)
+
+
   }
 
   def main(args: Array[String]): Unit = {
@@ -193,8 +287,20 @@ object App {
 
     val task = TaskDao.findTaskById(taskId)
     val filterSession = filter(task.taskParam, sessionDF)
-    combineSession(filterSession, userDF, costAgg, stepAgg)
+    val aggRdd = combineSession(filterSession, userDF, costAgg, stepAgg)
 
+    // 随机抽取Session
+    randomExtractSession(aggRdd, 10)
+
+    // 打印 聚合后的数据
+    println(stepAgg.value.toString)
+    println(costAgg.value.toString)
+
+    // 存储步长百分比
+    saveStepInterval(stepAgg, taskId)
+
+    // 存储花费时间百分比
+    saveCostInterval(costAgg, taskId)
 
   }
 }

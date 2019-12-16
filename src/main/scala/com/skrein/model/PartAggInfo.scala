@@ -11,5 +11,6 @@ package com.skrein.model
 case class PartAggInfo(
                         sessionId: String = null, searchKeywords: String = null,
                         clickCategoryIds: String = null, visitCost: Long = 0L, stepLength: Long = 0L,
-                        var age: Int = 0,var  professional: String = null, var city: String = null, var sex: String = null
+                        var age: Int = 0, var professional: String = null, var city: String = null, var sex: String = null,
+                        startTime: String = null
                       )
