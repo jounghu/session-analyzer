@@ -2,14 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a4084ff2-c02c-48e1-b7e4-5c91ccfc44ef" name="Default Changelist" comment="[Add] 自定义累加器">
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/dao/SessionExtractDao.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/CateSortKey.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/dao/Top10CategoryDao.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/CategoryTop.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/Session.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/Session.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/App.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/model/CateSortKey.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/CateSortKey.scala" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/util/StringUtils.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/util/StringUtils.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -34,9 +35,9 @@
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
-        <option name="localRepository" value="D:\apache-maven-3.6.2\repo" />
-        <option name="mavenHome" value="D:/apache-maven-3.6.2" />
-        <option name="userSettingsFile" value="D:\apache-maven-3.6.2\conf\settings.xml" />
+        <option name="localRepository" value="F:\DevTool\apache-maven-3.5.3\repo" />
+        <option name="mavenHome" value="F:/DevTool/apache-maven-3.5.3" />
+        <option name="userSettingsFile" value="F:\DevTool\apache-maven-3.5.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
@@ -62,7 +63,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -74,19 +75,6 @@
       <option name="MAIN_CLASS_NAME" value="com.skrein.App" />
       <module name="session-analyzer" />
       <option name="PROGRAM_PARAMETERS" value="1" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DBUtils" type="Application" factoryName="Application" temporary="true">
-      <option name="MAIN_CLASS_NAME" value="com.skrein.util.DBUtils" />
-      <module name="session-analyzer" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.skrein.util.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -111,6 +99,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StringUtils" type="Application" factoryName="Application" temporary="true">
+      <option name="MAIN_CLASS_NAME" value="com.skrein.util.StringUtils" />
+      <module name="session-analyzer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.skrein.util.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Test" type="Application" factoryName="Application" temporary="true">
       <option name="MAIN_CLASS_NAME" value="com.skrein.model.Test" />
       <module name="session-analyzer" />
@@ -126,18 +127,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.App" />
-      <item itemvalue="Application.DBUtils" />
       <item itemvalue="Application.Test" />
       <item itemvalue="Application.StepIntervalDao" />
       <item itemvalue="Application.MapTest" />
+      <item itemvalue="Application.StringUtils" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
+        <item itemvalue="Application.StringUtils" />
+        <item itemvalue="Application.Test" />
         <item itemvalue="Application.MapTest" />
         <item itemvalue="Application.StepIntervalDao" />
-        <item itemvalue="Application.Test" />
-        <item itemvalue="Application.DBUtils" />
       </list>
     </recent_temporary>
   </component>
@@ -169,6 +170,7 @@
       <workItem from="1575944743767" duration="15856000" />
       <workItem from="1576286376163" duration="6211000" />
       <workItem from="1576498861421" duration="7896000" />
+      <workItem from="1576561434120" duration="4925000" />
     </task>
     <task id="LOCAL-00001" summary="[Add] session agg, task数据库读取过滤">
       <created>1575885951403</created>
@@ -177,7 +179,14 @@
       <option name="project" value="LOCAL" />
       <updated>1575885951403</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[Add] 实现随机抽取Session算法">
+      <created>1576553131034</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1576553131034</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +207,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="[Add] session agg, task数据库读取过滤" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Add] session agg, task数据库读取过滤" />
+    <MESSAGE value="[Add] 实现随机抽取Session算法" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Add] 实现随机抽取Session算法" />
   </component>
   <component name="WindowStateProjectService">
     <state x="593" y="106" key="#App" timestamp="1575876546007">
@@ -210,11 +220,11 @@
     </state>
     <state x="452" y="100" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1576286379443" />
     <state x="452" y="101" key="#Notifications/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575870799324" />
-    <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1576552421899">
+    <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1576565534058">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="262" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576287812501" />
-    <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552421899" />
+    <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576565534058" />
     <state x="414" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576551672726">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -237,73 +247,77 @@
     </state>
     <state x="771" y="404" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576286436724" />
     <state x="771" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576547020447" />
-    <state x="1033" y="364" width="721" height="676" key="#xdebugger.evaluate" timestamp="1576505819952">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="1033" y="364" width="721" height="676" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1576505819952" />
-    <state x="1056" y="319" key="#xdebugger.evaluate/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229057625" />
-    <state x="236" y="52" key="CommitChangelistDialog2" timestamp="1575885950241">
+    <state x="1056" y="319" width="721" height="676" key="#xdebugger.evaluate" timestamp="1576562532494">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="236" y="52" key="CommitChangelistDialog2/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575885950241" />
+    <state x="1033" y="364" width="721" height="676" key="#xdebugger.evaluate/0.0.1920.1040@0.0.1920.1040" timestamp="1576505819952" />
+    <state x="1056" y="319" key="#xdebugger.evaluate/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576562532494" />
+    <state x="236" y="52" key="CommitChangelistDialog2" timestamp="1576566406872">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="236" y="52" key="CommitChangelistDialog2/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576566406872" />
     <state x="92" y="92" width="1736" height="866" key="DiffContextDialog" timestamp="1575877639378">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="92" y="92" width="1736" height="866" key="DiffContextDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575877639378" />
-    <state x="898" y="133" key="FileChooserDialogImpl" timestamp="1576286408168">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="898" y="134" key="FileChooserDialogImpl" timestamp="1576561485090">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="898" y="133" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1576286408168" />
-    <state x="898" y="134" key="FileChooserDialogImpl/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576043085600" />
-    <state width="1864" height="124" key="GridCell.Tab.0.bottom" timestamp="1576553017447">
+    <state x="898" y="134" key="FileChooserDialogImpl/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576561485090" />
+    <state width="1864" height="132" key="GridCell.Tab.0.bottom" timestamp="1576566162254">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="124" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553017447" />
-    <state width="1864" height="124" key="GridCell.Tab.0.center" timestamp="1576553017447">
+    <state width="1864" height="132" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576566162254" />
+    <state width="1864" height="132" key="GridCell.Tab.0.center" timestamp="1576566162254">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="124" key="GridCell.Tab.0.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553017447" />
-    <state width="1864" height="124" key="GridCell.Tab.0.left" timestamp="1576553017447">
+    <state width="1864" height="132" key="GridCell.Tab.0.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576566162254" />
+    <state width="1864" height="132" key="GridCell.Tab.0.left" timestamp="1576566162254">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="124" key="GridCell.Tab.0.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553017447" />
-    <state width="1864" height="124" key="GridCell.Tab.0.right" timestamp="1576553017447">
+    <state width="1864" height="132" key="GridCell.Tab.0.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576566162254" />
+    <state width="1864" height="132" key="GridCell.Tab.0.right" timestamp="1576566162254">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="124" key="GridCell.Tab.0.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553017447" />
-    <state width="1864" height="362" key="GridCell.Tab.1.bottom" timestamp="1576552298571">
+    <state width="1864" height="132" key="GridCell.Tab.0.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576566162254" />
+    <state width="1864" height="396" key="GridCell.Tab.1.bottom" timestamp="1576564337883">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="362" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552298571" />
-    <state width="1864" height="362" key="GridCell.Tab.1.center" timestamp="1576552298571">
+    <state width="1864" height="396" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576564337883" />
+    <state width="1864" height="396" key="GridCell.Tab.1.center" timestamp="1576564337883">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="362" key="GridCell.Tab.1.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552298571" />
-    <state width="1864" height="362" key="GridCell.Tab.1.left" timestamp="1576552298571">
+    <state width="1864" height="396" key="GridCell.Tab.1.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576564337883" />
+    <state width="1864" height="396" key="GridCell.Tab.1.left" timestamp="1576564337883">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="362" key="GridCell.Tab.1.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552298571" />
-    <state width="1864" height="362" key="GridCell.Tab.1.right" timestamp="1576552298571">
+    <state width="1864" height="396" key="GridCell.Tab.1.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576564337883" />
+    <state width="1864" height="396" key="GridCell.Tab.1.right" timestamp="1576564337883">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="362" key="GridCell.Tab.1.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552298571" />
-    <state x="312" y="0" key="SettingsEditor" timestamp="1576286480807">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="312" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576286480807" />
-    <state x="312" y="0" key="SettingsEditor/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575870855491" />
-    <state x="452" y="194" key="Vcs.Push.Dialog.v2" timestamp="1575885952767">
+    <state width="1864" height="396" key="GridCell.Tab.1.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576564337883" />
+    <state x="312" y="0" key="SettingsEditor" timestamp="1576561487798">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="452" y="194" key="Vcs.Push.Dialog.v2/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575885952766" />
+    <state x="312" y="0" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1576286480807" />
+    <state x="312" y="0" key="SettingsEditor/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576561487798" />
+    <state x="452" y="194" key="Vcs.Push.Dialog.v2" timestamp="1576553132487">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state x="452" y="194" key="Vcs.Push.Dialog.v2/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553132487" />
+    <state width="968" height="533" key="XDebugger.FullValuePopup" timestamp="1576562650995">
+      <screen x="0" y="0" width="1920" height="1050" />
+    </state>
+    <state width="968" height="533" key="XDebugger.FullValuePopup/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576562650995" />
     <state x="560" y="301" key="com.intellij.ide.util.TipDialog" timestamp="1576499264210">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -312,10 +326,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="554" y="23" width="811" height="993" key="find.popup/0.0.1920.1040@0.0.1920.1040" timestamp="1575775127338" />
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1576226254601">
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup" timestamp="1576561825828">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
-    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576226254601" />
+    <state x="539" y="15" width="840" height="1034" key="search.everywhere.popup/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576561825828" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -329,6 +343,11 @@
           <url>file://$PROJECT_DIR$/src/main/scala/com/skrein/App.scala</url>
           <line>215</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="scala-line">
+          <url>file://$PROJECT_DIR$/src/main/scala/com/skrein/App.scala</url>
+          <line>335</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

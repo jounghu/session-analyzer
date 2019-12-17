@@ -26,6 +26,10 @@ object StringUtils {
     Joiner.on("|").join(array.asJava)
   }
 
+  def split(str:String)={
+    str.split("\\|").toBuffer
+  }
+
   /**
    * 小时和分钟秒拼接0
    *

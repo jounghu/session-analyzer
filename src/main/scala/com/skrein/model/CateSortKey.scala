@@ -9,7 +9,8 @@ package com.skrein.model
  *
  */
 
-class CateSortKey(clickCnt: Long, payCnt: Long, orderCnt: Long) extends Ordered[CateSortKey] {
+class CateSortKey(val clickCnt: Long, val payCnt: Long, val orderCnt: Long) extends Ordered[CateSortKey] with Serializable {
+
 
 
   /**
@@ -19,8 +20,20 @@ class CateSortKey(clickCnt: Long, payCnt: Long, orderCnt: Long) extends Ordered[
    * @return
    */
   override def compare(that: CateSortKey): Int = {
-
-    -1
-
+    val clickCompare = clickCnt.compareTo(that.clickCnt)
+    if (clickCompare == 0) {
+      val payCompare =  payCnt.compareTo(that.payCnt)
+      if (payCompare == 0) {
+        orderCnt.compareTo(that.orderCnt)
+      } else {
+        payCompare
+      }
+    } else {
+      clickCompare
+    }
   }
+
+
+  override def toString = s"CateSortKey(_clickCnt=${clickCnt}, _payCnt=${payCnt}, _orderCnt=${orderCnt})"
 }
+

@@ -3,7 +3,7 @@ package com.skrein
 import java.util.Random
 
 import com.skrein.core.{CostAccumulator, StepAccumulator}
-import com.skrein.dao.{SessionExtractDao, SessionIntervalDao, TaskDao}
+import com.skrein.dao.{SessionExtractDao, SessionIntervalDao, TaskDao, Top10CategoryDao}
 import com.skrein.mock.DataMock
 import com.skrein.model._
 import com.skrein.util._
@@ -91,7 +91,7 @@ object App {
 
     val aggRdd = sessionDF.rdd.map(row => {
       (row.getAs[String]("sessionId"), row)
-    }).groupByKey()
+    }).groupByKey(4)
       .map { case (sessionId, rows) => {
         val searchKeywordList = ArrayBuffer[String]()
         val clickCategoryIdList = ArrayBuffer[String]()
@@ -103,7 +103,7 @@ object App {
           val searchKeyword = row.getAs[String]("searchKeyword")
           val clickCategoryId = row.getAs[Long]("clickCategoryId").toString
           if (!StringUtils.isEmpty(searchKeyword) && !searchKeywordList.contains(searchKeyword)) {
-            searchKeywordList += searchKeyword
+            searchKeywordList.append(searchKeyword)
           }
 
           if (userId == -1) {
@@ -111,7 +111,7 @@ object App {
           }
 
           if (!StringUtils.isEmpty(clickCategoryId) && !clickCategoryIdList.contains(clickCategoryId)) {
-            clickCategoryIdList + clickCategoryId
+            clickCategoryIdList.append(clickCategoryId)
           }
 
           // 计算开始时间和结束时间
@@ -289,6 +289,75 @@ object App {
 
   }
 
+  def top10Category(aggRdd: RDD[(String, PartAggInfo)], filterSession: DataFrame, taskId: Int) = {
+
+    val cateSortRdd = filterSession.rdd.map(row => {
+      val sessionId: String = row.getAs("sessionId")
+      (sessionId, row)
+    }).join(aggRdd, 10)
+      .flatMap(t => {
+        val row = t._2._1
+        val partAggInfo = t._2._2
+        val clickCategoryIds = partAggInfo.clickCategoryIds
+        val payCategoryIds = row.getAs[String]("payCategoryIds")
+        val orderCategoryIds = row.getAs[String]("orderCategoryIds")
+
+        val cateActionList = ArrayBuffer[(String, CateSortKey)]()
+        if (clickCategoryIds != null) {
+          val clickCates = StringUtils.split(clickCategoryIds)
+          for (item <- clickCates) {
+            if (item.toInt != 0) {
+              cateActionList.append((item, new CateSortKey(1, 0, 0)))
+            }
+          }
+        }
+
+        if (payCategoryIds != null) {
+          val clickCates = StringUtils.split(payCategoryIds)
+          for (item <- clickCates) {
+            if (item.toInt != 0) {
+              cateActionList.append((item, new CateSortKey(0, 1, 0)))
+            }
+          }
+        }
+
+
+        if (orderCategoryIds != null) {
+          val clickCates = StringUtils.split(orderCategoryIds)
+          for (item <- clickCates) {
+            if (item.toInt != 0) {
+              cateActionList.append((item, new CateSortKey(0, 0, 1)))
+            }
+          }
+        }
+        cateActionList
+      }).groupByKey(10)
+      .map(t => {
+        val iter = t._2.iterator
+        var clickCnt = 0L
+        var payCnt = 0L
+        var orderCnt = 0L
+        while (iter.hasNext) {
+          val cate: CateSortKey = iter.next()
+          clickCnt = clickCnt + cate.orderCnt
+          payCnt = payCnt + cate.payCnt
+          orderCnt = orderCnt + cate.orderCnt
+        }
+
+        (new CateSortKey(clickCnt, payCnt, orderCnt), t._1)
+      }).sortByKey(false).map(t => (t._2, t._1))
+
+    val top10Cate = cateSortRdd.take(10)
+
+    val topCates= top10Cate.map(t => {
+      val cnts = t._2
+      CategoryTop(t._1.toInt, taskId, cnts.clickCnt, cnts.payCnt, cnts.orderCnt)
+    }).to[ArrayBuffer]
+
+    Top10CategoryDao.insertCategories(topCates)
+
+  }
+
   def main(args: Array[String]): Unit = {
     val sparkConf = new SparkConf()
       .setAppName(AppConstants.appName)
@@ -313,18 +382,21 @@ object App {
     val filterSession = filter(task.taskParam, sessionDF)
     val aggRdd = combineSession(filterSession, userDF, costAgg, stepAgg)
 
-    // 随机抽取Session
-    randomExtractSession(aggRdd, 10, taskId)
+    //    // 随机抽取Session
+    //    randomExtractSession(aggRdd, 10, taskId)
 
-    // 打印 聚合后的数据
-    println(stepAgg.value.toString)
-    println(costAgg.value.toString)
 
-    // 存储步长百分比
-    saveStepInterval(stepAgg, taskId)
+    // 实现categoryId, 点击、下单、支付 二次排序
+    // 查找Top10 品类
+    top10Category(aggRdd, filterSession, taskId)
 
-    // 存储花费时间百分比
-    saveCostInterval(costAgg, taskId)
+    //    // 存储步长百分比
+    //    saveStepInterval(stepAgg, taskId)
+    //
+    //    // 存储花费时间百分比
+    //    saveCostInterval(costAgg, taskId)
+    //
+    System.in.read()
 
   }
 }
