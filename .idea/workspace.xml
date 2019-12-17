@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a4084ff2-c02c-48e1-b7e4-5c91ccfc44ef" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/smartfox_info.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/dao/SessionIntervalDao.scala" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/util/NumberUtil.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="a4084ff2-c02c-48e1-b7e4-5c91ccfc44ef" name="Default Changelist" comment="[Add] 自定义累加器">
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/dao/SessionExtractDao.scala" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/CateSortKey.scala" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/app.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/app.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/sql/Session.sql" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/sql/Session.sql" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/App.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/App.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/model/AggInterval.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/AggInterval.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/model/PartAggInfo.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/model/PartAggInfo.scala" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/scala/com/skrein/util/DateUtil.scala" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/scala/com/skrein/util/DateUtil.scala" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,16 +210,16 @@
     </state>
     <state x="452" y="100" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1576286379443" />
     <state x="452" y="101" key="#Notifications/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575870799324" />
-    <state x="690" y="262" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1576287812501">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog" timestamp="1576552421899">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="690" y="262" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576287812501" />
-    <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576227653221" />
-    <state x="414" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576228143478">
+    <state x="690" y="265" key="#com.intellij.codeInsight.editorActions.RestoreReferencesDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552421899" />
+    <state x="414" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1576551672726">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="414" y="162" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575774500237" />
-    <state x="414" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576228143478" />
+    <state x="414" y="164" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576551672726" />
     <state x="721" y="154" key="#com.intellij.ide.util.MemberChooser" timestamp="1576227835144">
       <screen x="0" y="0" width="1920" height="1050" />
     </state>
@@ -235,11 +232,11 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="489" y="131" key="#com.intellij.ide.util.frameworkSupport.AddFrameworkSupportDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1575774457937" />
-    <state x="771" y="404" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1576286436724">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="771" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1576547020447">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state x="771" y="404" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1576286436724" />
-    <state x="771" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1575871394066" />
+    <state x="771" y="408" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576547020447" />
     <state x="1033" y="364" width="721" height="676" key="#xdebugger.evaluate" timestamp="1576505819952">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -258,46 +255,46 @@
     </state>
     <state x="898" y="133" key="FileChooserDialogImpl/0.0.1920.1040@0.0.1920.1040" timestamp="1576286408168" />
     <state x="898" y="134" key="FileChooserDialogImpl/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576043085600" />
-    <state width="1867" height="282" key="GridCell.Tab.0.bottom" timestamp="1576506436356">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1864" height="124" key="GridCell.Tab.0.bottom" timestamp="1576553017447">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="313" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229405014" />
-    <state width="1867" height="282" key="GridCell.Tab.0.center" timestamp="1576506436356">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1864" height="124" key="GridCell.Tab.0.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553017447" />
+    <state width="1864" height="124" key="GridCell.Tab.0.center" timestamp="1576553017447">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="313" key="GridCell.Tab.0.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229405014" />
-    <state width="1867" height="282" key="GridCell.Tab.0.left" timestamp="1576506436356">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1864" height="124" key="GridCell.Tab.0.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553017447" />
+    <state width="1864" height="124" key="GridCell.Tab.0.left" timestamp="1576553017447">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="313" key="GridCell.Tab.0.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229405014" />
-    <state width="1867" height="282" key="GridCell.Tab.0.right" timestamp="1576506436356">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1864" height="124" key="GridCell.Tab.0.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553017447" />
+    <state width="1864" height="124" key="GridCell.Tab.0.right" timestamp="1576553017447">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="313" key="GridCell.Tab.0.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229405014" />
-    <state width="1867" height="282" key="GridCell.Tab.1.bottom" timestamp="1576506436356">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1864" height="124" key="GridCell.Tab.0.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576553017447" />
+    <state width="1864" height="362" key="GridCell.Tab.1.bottom" timestamp="1576552298571">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.1.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="186" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229149364" />
-    <state width="1867" height="282" key="GridCell.Tab.1.center" timestamp="1576506436356">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1864" height="362" key="GridCell.Tab.1.bottom/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552298571" />
+    <state width="1864" height="362" key="GridCell.Tab.1.center" timestamp="1576552298571">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.1.center/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="186" key="GridCell.Tab.1.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229149364" />
-    <state width="1867" height="282" key="GridCell.Tab.1.left" timestamp="1576506436356">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1864" height="362" key="GridCell.Tab.1.center/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552298571" />
+    <state width="1864" height="362" key="GridCell.Tab.1.left" timestamp="1576552298571">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.1.left/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="186" key="GridCell.Tab.1.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229149364" />
-    <state width="1867" height="282" key="GridCell.Tab.1.right" timestamp="1576506436356">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state width="1864" height="362" key="GridCell.Tab.1.left/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552298571" />
+    <state width="1864" height="362" key="GridCell.Tab.1.right" timestamp="1576552298571">
+      <screen x="0" y="0" width="1920" height="1050" />
     </state>
     <state width="1867" height="282" key="GridCell.Tab.1.right/0.0.1920.1040@0.0.1920.1040" timestamp="1576506436356" />
-    <state width="1864" height="186" key="GridCell.Tab.1.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576229149364" />
+    <state width="1864" height="362" key="GridCell.Tab.1.right/0.0.1920.1050/1920.74.1440.900@0.0.1920.1050" timestamp="1576552298571" />
     <state x="312" y="0" key="SettingsEditor" timestamp="1576286480807">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -325,13 +322,13 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/skrein/App.scala</url>
-          <line>209</line>
-          <option name="timeStamp" value="12" />
+          <line>210</line>
+          <option name="timeStamp" value="15" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="scala-line">
           <url>file://$PROJECT_DIR$/src/main/scala/com/skrein/App.scala</url>
-          <line>216</line>
-          <option name="timeStamp" value="13" />
+          <line>215</line>
+          <option name="timeStamp" value="16" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

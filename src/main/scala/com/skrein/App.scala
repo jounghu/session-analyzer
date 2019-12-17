@@ -1,13 +1,12 @@
 package com.skrein
 
-import java.util.HashMap
 import java.util.Random
 
 import com.skrein.core.{CostAccumulator, StepAccumulator}
-import com.skrein.dao.{SessionIntervalDao, TaskDao}
+import com.skrein.dao.{SessionExtractDao, SessionIntervalDao, TaskDao}
 import com.skrein.mock.DataMock
-import com.skrein.model.{CostInterval, CostIntervalPercent, PartAggInfo, StepInterval, StepIntervalPercent}
-import com.skrein.util.{AppConstants, DateUtil, JsonParse, NumberUtil, StringUtils}
+import com.skrein.model._
+import com.skrein.util._
 import org.apache.spark.rdd.RDD
 import org.apache.spark.sql.hive.HiveContext
 import org.apache.spark.sql.{DataFrame, SQLContext}
@@ -177,13 +176,13 @@ object App {
    *
    * @param aggRdd
    */
-  def randomExtractSession(aggRdd: RDD[(String, PartAggInfo)], sessionNum: Long) = {
+  def randomExtractSession(aggRdd: RDD[(String, PartAggInfo)], sessionNum: Long, taskId: Int) = {
 
     val dayHourSession = aggRdd.map {
       case (sessionId, pageAggInfo) => {
         val startTime = pageAggInfo.startTime
         val dateTimeHour = DateUtil.format(startTime)
-        (dateTimeHour, pageAggInfo.sessionId)
+        (dateTimeHour, pageAggInfo)
       }
     }.cache()
 
@@ -209,9 +208,12 @@ object App {
     val random = new Random()
     val dayHourMapIndex: mutable.Map[String, ArrayBuffer[Int]] = mutable.Map()
     for ((k, v: mutable.Map[String, Int]) <- dayHourMap) {
-      val perHourSize = if (perDaySize / v.size == 0) 1 else perDaySize / v.size
+      val total = v.values.sum
+
       // 遍历
       for ((hour, count: Int) <- v) {
+        val perHourRate = count.toDouble / total.toDouble * perDaySize
+        val perHourSize = if (perHourRate < 1) 1 else perHourRate
         val randomSessionIndex = ArrayBuffer[Int]()
         for (i <- 0 until perHourSize.toInt) {
           var item = random.nextInt(count)
@@ -224,6 +226,28 @@ object App {
       }
     }
 
+
+    val aggInfos = dayHourSession.groupByKey(5).flatMap {
+      t => {
+        val dayHourList: ArrayBuffer[Int] = dayHourMapIndex(t._1)
+
+        val sessionAggList = ArrayBuffer[PartAggInfo]()
+        val sessionIter = t._2.iterator
+        var index = 0
+        while (sessionIter.hasNext) {
+          val sessionAgg = sessionIter.next()
+          if (dayHourList.contains(index)) {
+            sessionAggList.append(sessionAgg)
+          }
+          index = index + 1
+        }
+        sessionAggList
+      }
+    }.collect()
+
+    aggInfos.foreach(println)
+
+    SessionExtractDao.insertExtractSessions(aggInfos.to[ArrayBuffer], taskId)
 
   }
 
@@ -290,7 +314,7 @@ object App {
     val aggRdd = combineSession(filterSession, userDF, costAgg, stepAgg)
 
     // 随机抽取Session
-    randomExtractSession(aggRdd, 10)
+    randomExtractSession(aggRdd, 10, taskId)
 
     // 打印 聚合后的数据
     println(stepAgg.value.toString)
