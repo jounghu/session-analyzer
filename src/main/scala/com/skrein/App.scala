@@ -3,7 +3,7 @@ package com.skrein
 import java.util.Random
 
 import com.skrein.core.{CostAccumulator, StepAccumulator}
-import com.skrein.dao.{SessionExtractDao, SessionIntervalDao, TaskDao, Top10CategoryDao}
+import com.skrein.dao._
 import com.skrein.mock.DataMock
 import com.skrein.model._
 import com.skrein.util._
@@ -24,6 +24,55 @@ import scala.collection.mutable.ArrayBuffer
  *
  */
 object App {
+
+
+  def main(args: Array[String]): Unit = {
+    val sparkConf = new SparkConf()
+      .setAppName(AppConstants.appName)
+      .setMaster(AppConstants.master)
+
+
+    val sparkContext = new SparkContext(sparkConf)
+    val sqlContext = getSQLContext(sparkContext)
+
+    // mock 数据
+    val sessionDF = DataMock.mockSession(sqlContext)
+    val userDF = DataMock.mockUser(sqlContext)
+
+    // 自定义累加器
+    val costAgg = sparkContext.accumulator(new CostInterval())(new CostAccumulator)
+    val stepAgg = sparkContext.accumulator(new StepInterval())(new StepAccumulator)
+
+    val taskId = args(0).toInt
+    if (taskId == 0) {
+      throw new RuntimeException("taskId not be 0")
+    }
+
+    val task = TaskDao.findTaskById(taskId)
+
+    // 过滤session detail
+    val filterSession = filter(task.taskParam, sessionDF).cache()
+
+    // 初步聚合点击数据
+    val aggRdd = combineSession(filterSession, userDF, costAgg, stepAgg).cache()
+
+    // 随机抽取Session
+    randomExtractSession(aggRdd, 10, taskId)
+
+    // 实现categoryId, 点击、下单、支付 二次排序
+    // 查找Top10 品类
+    val top10Cates = top10Category(aggRdd, filterSession, taskId)
+
+    // top10品类下的点击top10
+    top10CategorySessionClick(top10Cates, aggRdd, taskId)
+
+    // 存储步长百分比
+    saveStepInterval(stepAgg, taskId)
+
+    // 存储花费时间百分比
+    saveCostInterval(costAgg, taskId)
+
+  }
 
   def getSQLContext(sparkContext: SparkContext): SQLContext = {
     if (AppConstants.local) {
@@ -349,54 +398,58 @@ object App {
 
     val top10Cate = cateSortRdd.take(10)
 
-    val topCates= top10Cate.map(t => {
+    val topCates = top10Cate.map(t => {
       val cnts = t._2
       CategoryTop(t._1.toInt, taskId, cnts.clickCnt, cnts.payCnt, cnts.orderCnt)
     }).to[ArrayBuffer]
 
     Top10CategoryDao.insertCategories(topCates)
-
+    topCates
   }
 
-  def main(args: Array[String]): Unit = {
-    val sparkConf = new SparkConf()
-      .setAppName(AppConstants.appName)
-      .setMaster(AppConstants.master)
 
+  def top10CategorySessionClick(top10Cates: ArrayBuffer[CategoryTop], aggRdd: RDD[(String, PartAggInfo)], taskId: Int) = {
+    val topSession = aggRdd.flatMap(t => {
+      val cateIds = t._2.clickCategoryIds
 
-    val sparkContext = new SparkContext(sparkConf)
-    val sqlContext = getSQLContext(sparkContext)
+      val cateGroups = StringUtils.split(cateIds)
+      val cateSessionCnt = ArrayBuffer[(String, (String, Long))]()
 
-    val sessionDF = DataMock.mockSession(sqlContext)
-    val userDF = DataMock.mockUser(sqlContext)
-    val costAgg = sparkContext.accumulator(new CostInterval())(new CostAccumulator)
-    val stepAgg = sparkContext.accumulator(new StepInterval())(new StepAccumulator)
+      val cateCnt = mutable.Map[String, Int]()
 
+      for (item <- cateGroups) {
+        val value = cateCnt.getOrElse(item, 0)
+        cateCnt += item -> (value + 1)
+      }
 
-    val taskId = args(0).toInt
-    if (taskId == 0) {
-      throw new RuntimeException("taskId not be 0")
+      for ((k, v) <- cateCnt) {
+        cateSessionCnt += Tuple2(k, Tuple2(t._1, v))
+      }
+
+      cateSessionCnt
+    }).filter(t => top10Cates.map(_.cateId).contains(t._1.toInt))
+      .groupByKey(10) // 按照商品分组
+      .map {
+        case (cateId, sessionCnts) => {
+          val arr = sessionCnts.toArray.sortBy(r => r._2).take(10)
+          (cateId, arr)
+        }
+      }
+
+    val clt = topSession.collect()
+
+    val cateSessionTop10 = ArrayBuffer[Top10CategorySession]()
+
+    for (elem <- clt) {
+      for (arr <- elem._2) {
+        val top10Session = Top10CategorySession(taskId, elem._1.toInt, arr._1, arr._2)
+        cateSessionTop10 += top10Session
+      }
     }
 
-    val task = TaskDao.findTaskById(taskId)
-    val filterSession = filter(task.taskParam, sessionDF)
-    val aggRdd = combineSession(filterSession, userDF, costAgg, stepAgg)
-
-    //    // 随机抽取Session
-    //    randomExtractSession(aggRdd, 10, taskId)
-
-
-    // 实现categoryId, 点击、下单、支付 二次排序
-    // 查找Top10 品类
-    top10Category(aggRdd, filterSession, taskId)
-
-    //    // 存储步长百分比
-    //    saveStepInterval(stepAgg, taskId)
-    //
-    //    // 存储花费时间百分比
-    //    saveCostInterval(costAgg, taskId)
-    //
-    System.in.read()
+    Top10CategorySessionDao.insertTop10Sessions(cateSessionTop10)
 
   }
+
+
 }

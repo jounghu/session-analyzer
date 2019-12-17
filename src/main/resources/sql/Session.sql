@@ -74,3 +74,16 @@ CREATE TABLE `t_top10_cate` (
   `update_time` DATETIME DEFAULT CURRENT_TIMESTAMP   ON  UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+
+-- 商品品类top10 session表
+CREATE TABLE `t_top10_cate_session` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `task_id` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
+  `session_id` varchar(255) NOT NULL,
+  `click_cnt` bigint(20) NOT NULL,
+  `insert_time` datetime DEFAULT CURRENT_TIMESTAMP,
+  `update_time` datetime DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8
